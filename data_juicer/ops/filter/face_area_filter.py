@@ -1,5 +1,6 @@
 import numpy as np
 from jsonargparse.typing import ClosedUnitInterval
+from loguru import logger
 
 from data_juicer.utils.availability_utils import AvailabilityChecking
 from data_juicer.utils.constant import Fields, StatsKeys
@@ -106,8 +107,8 @@ class FaceAreaFilter(Filter):
         sample[Fields.stats][StatsKeys.face_ratios] = [
             face_area_ratios[key] for key in loaded_image_keys
         ]
-        print('=' * 20)
-        print(f'sample : {sample}')
+        logger.debug('=' * 20)
+        logger.debug(f'sample : {sample}')
         return sample
 
     def process(self, sample):

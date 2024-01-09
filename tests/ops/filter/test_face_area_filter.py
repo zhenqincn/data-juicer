@@ -2,6 +2,7 @@ import os
 import unittest
 
 from datasets import Dataset
+from loguru import logger
 
 from data_juicer.ops.filter.face_area_filter import FaceAreaFilter
 from data_juicer.utils.constant import Fields
@@ -27,10 +28,10 @@ class FaceAreaFilterTest(unittest.TestCase):
         dataset = dataset.map(op.compute_stats, num_proc=num_proc)
         dataset = dataset.filter(op.process, num_proc=num_proc)
         dataset = dataset.remove_columns(Fields.stats)
-        print("*" * 20)
+        logger.debug("*" * 20)
         res_list = dataset.to_list()
-        print(f'req list {res_list}')
-        print(f'ref list {target_list}')
+        logger.debug(f'req list {res_list}')
+        logger.debug(f'ref list {target_list}')
         self.assertEqual(res_list, target_list)
 
     def test_filter_small(self):
