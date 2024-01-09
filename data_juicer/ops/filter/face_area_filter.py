@@ -106,6 +106,8 @@ class FaceAreaFilter(Filter):
         sample[Fields.stats][StatsKeys.face_ratios] = [
             face_area_ratios[key] for key in loaded_image_keys
         ]
+        print('=' * 20)
+        print(f'sample : {sample}')
         return sample
 
     def process(self, sample):
